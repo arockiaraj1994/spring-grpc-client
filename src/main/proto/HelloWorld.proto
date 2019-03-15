@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package com.learnings.spring.grpc.client;
+
+message PreviewSummary {
+	string counterParty = 1;
+	string counterPartyAccount = 2;
+	bool isGuaranteeFund = 3;
+	double parAmount = 4;
+	double hairCuttedValue = 5;
+
+	message Asset {
+		int32 id = 1;
+		string type = 2;
+		string status = 3;
+		string remark = 4;
+	}
+	
+	repeated Asset asset = 6;
+}
+
+service PreviewService {
+	rpc preview (PreviewSummary) returns (PreviewSummary);
+}
